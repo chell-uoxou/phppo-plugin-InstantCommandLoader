@@ -3,8 +3,8 @@ namespace InstantCommandLoader;
 use phppo\system\systemProcessing as systemProcessing;
 use phppo\command\plugincommand\addcommand as addcommand;
 $pluginAddCommand = new addcommand;
-$pluginAddCommand -> addcommand("InstantCommandLoader","icl","plugin","InstantCommandLoader plugin command.","<reload>");
-
+$pluginAddCommand -> addcommand("InstantCommandLoader","icl","plugin","InstantCommandLoader plugin command.","<reload|help>");
+$icl_extensions = array();
 class ICL extends systemProcessing{
 
 	protected $icl_extensions;
@@ -66,10 +66,23 @@ class ICL extends systemProcessing{
 					$this->loadFiles();
 					$this->addlog("Reload completed");
 					break;
-
+				case 'help':
+					$this->addlog("=== ICL command usage ===");
+					$this->info("icl reload : reloadcommands.");
+					$this->info("icl help   : show help of ICL.");
+					$this->info('===== How to install =====
+1. Put on "root/plugins" directory.
+2. Boot PHP Prompt OS and check the existence of "root/bin/InstantCommandLoader" directory.
+3. Put raw PHP files on "root/bin/InstantCommandLoader/includes".
+4. Write extension command and path (like "command = path") on "root/bin/InstantCommandLoader/extensions.ini"
+5. Write command description (like "command = description") on "root/bin/InstantCommandLoader/extension_descriptions.ini" (optional)
+6. Run "icl reload" command.
+7. Enjoy!');
+					break;
 				default:
-					$this->addlog("icl command usage:");
-					$this->addlog("icl reload: reloadcommands.");
+					$this->addlog("=== ICL command usage ===");
+					$this->info("icl reload : reloadcommands.");
+					$this->info("icl help   : show help of ICL.");
 					break;
 			}
 		}
