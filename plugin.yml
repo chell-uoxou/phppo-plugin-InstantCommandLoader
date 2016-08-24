@@ -1,7 +1,7 @@
 name: InstantCommandLoader
 path: src/chell_uoxou/main.php
 main: InstantCommandLoader\ICL
-version: 0.2.1
+version: 0.2.2
 api: 1.6.4_Dev
 load: STARTUP
 author: chell_uoxou
