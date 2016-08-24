@@ -2,19 +2,21 @@
 namespace InstantCommandLoader;
 use phppo\system\systemProcessing as systemProcessing;
 use phppo\command\plugincommand\addcommand as addcommand;
-$pluginAddCommand = new addcommand;
-$pluginAddCommand -> addcommand("InstantCommandLoader","icl","plugin","InstantCommandLoader plugin command.","<reload|help>");
-$icl_extensions = array();
 class ICL extends systemProcessing{
 
 	protected $icl_extensions;
 	function __construct(){
 		# code...
 	}
+
 	public function onLoad(){
 		global $poPath;
 		global $plugindata;
 		global $pluginAddCommand;
+		global $icl_extensions;
+		$pluginAddCommand = new addcommand;
+		$pluginAddCommand -> addcommand("InstantCommandLoader","icl","plugin","InstantCommandLoader plugin command.","<reload|help>");
+		$icl_extensions = array();
 		$version = $plugindata["InstantCommandLoader"]["version"];
 		// $this->addlog("loaded");
 		$iniPath = $poPath . "/" . "root/bin/InstantCommandLoader/";
@@ -41,13 +43,13 @@ class ICL extends systemProcessing{
 		global $icl_extensions;
 		$exarray = $icl_extensions;
 		// var_dump($icl_extensions);////////////////////////
-		if (array_key_exists($baseCommand,$exarray)) {
-			// echo "exist";//////////////////
-			include $exarray[$baseCommand]["path"];
-			return true;
-		}else{
-			return false;
-		}
+		// if (array_key_exists($baseCommand,$exarray)) {
+		// 	// echo "exist";//////////////////
+		// 	include $exarray[$baseCommand]["path"];
+		// 	return true;
+		// }else{
+		// 	return false;
+		// }
 	}
 
 	public function onCommand(){
