@@ -43,13 +43,13 @@ class ICL extends systemProcessing{
 		global $icl_extensions;
 		$exarray = $icl_extensions;
 		// var_dump($icl_extensions);////////////////////////
-		// if (array_key_exists($baseCommand,$exarray)) {
-		// 	// echo "exist";//////////////////
-		// 	include $exarray[$baseCommand]["path"];
-		// 	return true;
-		// }else{
-		// 	return false;
-		// }
+		if (array_key_exists($baseCommand,$exarray)) {
+			// echo "exist";//////////////////
+			include $exarray[$baseCommand]["path"];
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 	public function onCommand(){
